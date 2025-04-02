@@ -265,57 +265,94 @@ header a {
     text-align: center;
 }
 
-/* Projects Section */
+/* Updated CSS for single project display */
 .projects {
     padding: 5rem 5%;
     background: rgba(108, 99, 255, 0.05);
-}
-
-.projects h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--primary);
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+.project-single {
+    display: flex;
+    justify-content: center;
+}
+
 .project-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
     display: flex;
     flex-direction: column;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-}
-
-.project-card img {
+    max-width: 900px;
     width: 100%;
-    height: 200px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.project-image-container {
+    position: relative;
+    height: 350px; /* Increased height */
+    overflow: hidden;
+}
+
+.project-main-image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    object-position: top; /* Ensures top of image is visible */
+}
+
+.app-logo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.project-logo {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
 }
 
 .project-content {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 2rem;
 }
 
-.project-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+.project-description {
+    margin: 1.5rem 0;
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-card {
+        flex-direction: column;
+    }
+    
+    .project-image-container {
+        height: 250px;
+    }
+    
+    .project-logo {
+        width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-image-container {
+        height: 200px;
+    }
+    
+    .tech-tags {
+        justify-content: center;
+    }
 }
 
 .tech-tags {
