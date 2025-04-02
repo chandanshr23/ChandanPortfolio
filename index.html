@@ -83,19 +83,27 @@
 
     <!-- Projects Section -->
 <section id="projects" class="projects">
-    <h2>My Projects</h2>
-    <div class="project-grid">
-        <!-- Project 1 -->
+    <h2>My Project</h2> <!-- Changed from "Projects" to "Project" -->
+    <div class="project-single"> <!-- New container for single project -->
         <div class="project-card">
-            <img src="WebApp.png" alt="Zwigato">
+            <div class="project-image-container">
+                <!-- Improved image with proper aspect ratio -->
+                <img src="WebApp.jpg" alt="Zwigato Delivery App" class="project-main-image">
+                <div class="app-logo-overlay">
+                    <img src="assets/projects/zwigato-logo.png" alt="Zwigato Logo" class="project-logo">
+                </div>
+            </div>
             <div class="project-content">
-                <h3>Online Delivery Application</h3>
+                <h3>Zwigato Food Delivery Platform</h3>
                 <div class="tech-tags">
                     <span class="tech-tag react">Java</span>
                     <span class="tech-tag node">JSP & Servlets</span>
                     <span class="tech-tag mongodb">JDBC</span>
                     <span class="tech-tag stripe">MySQL</span>
                 </div>
+		     <p class="project-description">
+                    A full-stack food delivery platform where users can browse restaurants, place orders and User Authentication.
+                </p>
                 <div class="project-links">
                     <a href="" class="btn">Live Demo</a>
                     <a href="https://github.com/chandanshr23/Zwigato" class="btn-outline">Code</a>
