@@ -22,23 +22,59 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Form Submission (Optional: Connect to backend)
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Message sent! (Backend integration needed)');
-        contactForm.reset();
-    });
-}
+document.getElementById("contact-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formStatus = document.getElementById("form-status");
+    
+    // Show loading state
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    formStatus.textContent = "";
+    formStatus.style.color = "";
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
+            formStatus.style.color = "var(--primary)"; // Use your primary color
+            form.reset();
+        } else {
+            const errorData = await response.json();
+            if (errorData.errors) {
+                formStatus.textContent = errorData.errors.map(error => error.message).join(", ");
+            } else {
+                formStatus.textContent = "Oops! Something went wrong. Please try again.";
+            }
+            formStatus.style.color = "#ff4444"; // Error color
+        }
+    } catch (error) {
+        formStatus.textContent = "Network error. Please check your internet connection.";
+        formStatus.style.color = "#ff4444";
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+    }
+});
+
 // Typing animation script
 document.addEventListener('DOMContentLoaded', function() {
     const typedTextSpan = document.querySelector('.typed-text');
     const cursorSpan = document.querySelector('.cursor');
     
-    const textArray = ["Full Stack Developer.", "LeetCode Enthusiast.","Software Engineer"];
-    const typingDelay = 100;
-    const erasingDelay = 100;
-    const newTextDelay = 1000; // Delay between current and next text
+    const textArray = ["I am a Full Stack Developer.","I am a Software Engineer.","Always Building.","Always Learning."];
+    const typingDelay = 50;
+    const erasingDelay = 50;
+    const newTextDelay = 100; // Delay between current and next text
     let textArrayIndex = 0;
     let charIndex = 0;
     
