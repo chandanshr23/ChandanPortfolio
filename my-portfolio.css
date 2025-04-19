@@ -150,15 +150,34 @@ header a {
 
 /* About Section */
 .about {
-    padding: 5rem 5%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 35px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+    color: #2c3e50;
+    line-height: 1.8;
+  }
+  
+  .about h2 {
     text-align: center;
-}
-
-.about h2 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: var(--primary);
-}
+    color:#6c63ff;
+    margin-bottom: 25px;
+    padding-left: 15px;
+  }
+  
+  .about p {
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+  }
+  
+  .about strong {
+    color:#A8AFF5;
+  }
+  
 
 /* Education Section */
 .education {
@@ -178,7 +197,7 @@ header a {
     justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -188,7 +207,7 @@ header a {
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     flex: 1;
-    min-width: 300px;
+    min-width: 350px;
 }
 
 .education-item h3 {
@@ -272,32 +291,36 @@ header a {
     max-width: 1200px;
     margin: 0 auto;
 }
-.projects h2{
+
+.projects h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 2rem;
     color: var(--primary);
 }
 
-.project-single {
-    display: flex;
-    justify-content: center;
+/* Changed this to create a proper grid */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
 }
 
+/* Modified project card to fit the grid */
 .project-card {
     display: flex;
     flex-direction: column;
-    max-width: 900px;
-    width: 100%;
     background: white;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    height: 100%; /* Make cards equal height */
 }
 
+/* Rest of your existing styles remain the same */
 .project-image-container {
     position: relative;
-    height: 350px; /* Increased height */
+    height: 350px;
     overflow: hidden;
 }
 
@@ -305,11 +328,14 @@ header a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top; /* Ensures top of image is visible */
+    object-position: top;
 }
 
 .project-content {
     padding: 2rem;
+    flex-grow: 1; /* Helps with equal height */
+    display: flex;
+    flex-direction: column;
 }
 
 .project-description {
@@ -320,16 +346,12 @@ header a {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .project-card {
-        flex-direction: column;
+    .projects-container {
+        grid-template-columns: 1fr; /* Stack on mobile */
     }
     
     .project-image-container {
         height: 250px;
-    }
-    
-    .project-logo {
-        width: 120px;
     }
 }
 
@@ -385,6 +407,99 @@ header a {
     font-size: 0.9rem;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-card {
+        max-width: 100%;
+        min-width: 300px;
+    }
+    
+    .project-image-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-image-container {
+        height: 200px;
+    }
+    
+    .tech-tags {
+        justify-content: center;
+    }
+}
+
+/* Certifications Section */
+.certifications {
+    padding: 5rem 5%;
+    background: rgba(108, 99, 255, 0.05);
+}
+
+.certifications h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary);
+}
+
+.certifications-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.certification-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.certification-card:hover {
+    transform: translateY(-5px);
+}
+
+.certification-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.certification-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.certification-content {
+    padding: 1.5rem;
+}
+
+.certification-content h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.certification-content .issuer {
+    font-weight: 500;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+}
+
+.certification-content .date {
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .certifications-container {
+        grid-template-columns: 1fr;
+    }
+}
 /* Contact Section */
 .contact {
     padding: 5rem 5%;
@@ -418,6 +533,26 @@ header a {
     resize: vertical;
 }
 
+/* Add to your CSS file */
+.form-status {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Success state */
+.form-status.success {
+    color: var(--primary);
+    background-color: rgba(108, 99, 255, 0.1);
+}
+
+/* Error state */
+.form-status.error {
+    color: #ff4444;
+    background-color: rgba(255, 68, 68, 0.1);
+}
 /* Footer */
 footer {
     text-align: center;
